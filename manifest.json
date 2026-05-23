@@ -17,6 +17,7 @@
         "https://*.instructure.com/*",
         "https://*.i-ready.com/*",
         "https://*.lexialearning.com/*",
+        "https://*.lexiapowerup.com/*",
         "https://*.lexia.com/*",
         "https://*.carnegielearning.com/*",
         "https://*.mathia.com/*"
@@ -38,6 +39,7 @@
     "https://*.instructure.com/*",
     "https://*.i-ready.com/*",
     "https://*.lexialearning.com/*",
+    "https://*.lexiapowerup.com/*",
     "https://*.lexia.com/*",
     "https://*.carnegielearning.com/*",
     "https://*.mathia.com/*"
