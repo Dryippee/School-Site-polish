@@ -2,21 +2,25 @@
   const themeClass = 'sv-glass-ui-active';
   document.documentElement.classList.add(themeClass);
 
+  const head = document.head || document.documentElement;
+  const pfpUrl = chrome.runtime.getURL('personalization/pfp-white.png');
+
   const fontLink = document.createElement('link');
   fontLink.rel = 'stylesheet';
   fontLink.href = 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap';
-  document.head ? document.head.appendChild(fontLink) : document.documentElement.appendChild(fontLink);
+  if (!document.querySelector('link[href^="https://fonts.googleapis.com/css2?family=Outfit"]')) {
+    head.appendChild(fontLink);
+  }
 
   try {
-    const bgUrl = chrome.runtime.getURL('bg.png');
+    const bgUrl = chrome.runtime.getURL('personalization/bg.png');
     const bgStyle = document.createElement('style');
     bgStyle.textContent =
       `.${themeClass} body { background: url("${bgUrl}") center / cover fixed !important; }`;
-    document.head ? document.head.appendChild(bgStyle) : document.documentElement.appendChild(bgStyle);
+    head.appendChild(bgStyle);
   } catch (e) {}
 
   try {
-    const pfpUrl = chrome.runtime.getURL('pfp-white.png');
     const pfpStyle = document.createElement('style');
     pfpStyle.textContent =
       `.${themeClass} .student-photo, .${themeClass} .student-avatar, ` +
@@ -33,15 +37,15 @@
       `content: url("${pfpUrl}") !important; ` +
       `width: 96px !important; height: 96px !important; ` +
       `border-radius: 50% !important; object-fit: cover !important; }`;
-    document.head ? document.head.appendChild(pfpStyle) : document.documentElement.appendChild(pfpStyle);
+    head.appendChild(pfpStyle);
   } catch (e) {}
-
-  const pfpUrl = chrome.runtime.getURL('pfp-white.png');
 
   function fixWhiteElements(root) {
     if (!root) return;
-    const all = root.querySelectorAll ? root.querySelectorAll('*') : [];
-    all.forEach(el => {
+    const nodes = [];
+    if (root.nodeType === Node.ELEMENT_NODE) nodes.push(root);
+    if (root.querySelectorAll) nodes.push(...root.querySelectorAll('*'));
+    nodes.forEach(el => {
       if (el.classList && el.classList.contains('sv-pxp-fixed')) return;
       const style = getComputedStyle(el);
       const bg = style.backgroundColor;
@@ -101,13 +105,49 @@
   setTimeout(() => fixWhiteElements(document), 500);
   setTimeout(() => fixWhiteElements(document), 1500);
 
-  const obs = new MutationObserver(() => fixWhiteElements(document.body || document));
-  if (document.body) obs.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+  const queued = new Set();
+  let pending = false;
+
+  function queueNode(node) {
+    if (node && node.nodeType === Node.ELEMENT_NODE) queued.add(node);
+  }
+
+  function scheduleFlush() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(() => {
+      pending = false;
+      queued.forEach(node => fixWhiteElements(node));
+      queued.clear();
+    });
+  }
+
+  const obs = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach(queueNode);
+      } else if (mutation.type === 'attributes') {
+        queueNode(mutation.target);
+      }
+    });
+    scheduleFlush();
+  });
+
+  function startObserver() {
+    obs.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style', 'class']
+    });
+  }
+
+  if (document.body) startObserver();
   else {
     const waitObs = new MutationObserver(() => {
       if (document.body) {
         waitObs.disconnect();
-        obs.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+        startObserver();
       }
     });
     waitObs.observe(document.documentElement, { childList: true, subtree: true });

@@ -22,7 +22,7 @@
   ],
   "permissions": [],
   "web_accessible_resources": [{
-    "resources": ["bg.png", "pfp.png", "pfp-white.png", "icons/*"],
+    "resources": ["personalization/bg.png", "personalization/pfp.png", "personalization/pfp-white.png", "icons/*"],
     "matches": ["https://grades.fwps.org/*", "https://*.studentvue.com/*", "https://*.parentvue.com/*"]
   }],
   "host_permissions": [
