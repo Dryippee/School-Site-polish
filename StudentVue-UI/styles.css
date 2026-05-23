@@ -122,6 +122,19 @@ html.sv-glass-ui-active h4, html.sv-glass-ui-active h5, html.sv-glass-ui-active 
   letter-spacing: -0.02em;
 }
 
+html.sv-glass-ui-active div > ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 40px !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+html.sv-glass-ui-active li.separator {
+  display: none !important;
+}
+
 html.sv-glass-ui-active h1 {
   font-size: 32px !important;
   font-weight: 700 !important;
@@ -534,6 +547,8 @@ html.sv-glass-ui-active .more-options ul li {
   padding: 8px 0 !important;
   border-bottom: 1px solid rgba(255,255,255,0.03) !important;
 }
+
+
 
 html.sv-glass-ui-active .more-options ul li:last-child {
   border-bottom: none !important;
