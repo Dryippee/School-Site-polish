@@ -1,0 +1,1197 @@
+@keyframes glass-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes ambient-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.05); opacity: 0.5; }
+}
+
+@keyframes waveform {
+  0%, 100% { height: 4px; }
+  25% { height: 20px; }
+  50% { height: 8px; }
+  75% { height: 16px; }
+}
+
+@keyframes shimmer-slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+html.sv-glass-ui-active {
+  --glass-bg: #000000;
+  --glass-card: rgba(255, 255, 255, 0.04);
+  --glass-card-hover: rgba(255, 255, 255, 0.08);
+  --glass-card-strong: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-hover: rgba(255, 255, 255, 0.12);
+  --glass-text: #ffffff;
+  --glass-text-secondary: rgba(255, 255, 255, 0.5);
+  --glass-text-tertiary: rgba(255, 255, 255, 0.3);
+  --glass-blur: blur(60px);
+  --glass-blur-heavy: blur(80px);
+  --glass-blur-light: blur(30px);
+  --glass-radius: 32px;
+  --glass-radius-sm: 20px;
+  --glass-radius-lg: 44px;
+  --glass-radius-xl: 56px;
+  --glass-radius-pill: 999px;
+  --glass-accent: #5e5ce6;
+  --glass-accent-glow: rgba(94, 92, 230, 0.35);
+  --glass-accent2: #007aff;
+  --glass-accent3: #ff2d55;
+  --glass-success: #30d158;
+  --glass-warning: #ff9f0a;
+  --glass-danger: #ff453a;
+  --glass-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03) inset;
+  --glass-shadow-lg: 0 16px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  --glass-shadow-sm: 0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.02) inset;
+  --glass-shadow-glow: 0 8px 40px rgba(94, 92, 230, 0.2), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  --glass-font: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  background: #000000 !important;
+  color-scheme: dark;
+}
+
+html.sv-glass-ui-active::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 20%, rgba(94, 92, 230, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(0, 122, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: ambient-pulse 8s ease-in-out infinite;
+}
+
+html.sv-glass-ui-active body {
+  font-family: var(--glass-font) !important;
+  color: var(--glass-text) !important;
+  min-height: 100vh;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+html.sv-glass-ui-active ::selection {
+  background: rgba(94, 92, 230, 0.4);
+  color: #fff;
+}
+
+html.sv-glass-ui-active ::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+html.sv-glass-ui-active ::-webkit-scrollbar-track {
+  background: transparent;
+}
+html.sv-glass-ui-active ::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+}
+html.sv-glass-ui-active ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+html.sv-glass-ui-active .container,
+html.sv-glass-ui-active .container-fluid,
+html.sv-glass-ui-active .row,
+html.sv-glass-ui-active [class*="col-"] {
+  background: transparent !important;
+}
+
+html.sv-glass-ui-active h1, html.sv-glass-ui-active h2, html.sv-glass-ui-active h3,
+html.sv-glass-ui-active h4, html.sv-glass-ui-active h5, html.sv-glass-ui-active h6 {
+  color: var(--glass-text) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em;
+}
+
+html.sv-glass-ui-active h1 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em;
+  margin: 24px 0 20px !important;
+}
+
+html.sv-glass-ui-active h2 {
+  font-size: 22px !important;
+  letter-spacing: -0.02em;
+}
+
+html.sv-glass-ui-active a {
+  color: var(--glass-accent) !important;
+  text-decoration: none !important;
+}
+html.sv-glass-ui-active a:hover {
+  opacity: 0.8;
+}
+
+html.sv-glass-ui-active small,
+html.sv-glass-ui-active .small,
+html.sv-glass-ui-active .text-muted {
+  color: var(--glass-text-secondary) !important;
+}
+
+html.sv-glass-ui-active hr,
+html.sv-glass-ui-active .divider {
+  border-color: var(--glass-border) !important;
+  opacity: 0.5;
+}
+
+html.sv-glass-ui-active .panel,
+html.sv-glass-ui-active .panel-default,
+html.sv-glass-ui-active .well,
+html.sv-glass-ui-active .card,
+html.sv-glass-ui-active .list-group-item,
+html.sv-glass-ui-active .dropdown-menu,
+html.sv-glass-ui-active .modal-content,
+html.sv-glass-ui-active .PXP-nav__dropdown,
+html.sv-glass-ui-active .content-box,
+html.sv-glass-ui-active .data-box,
+html.sv-glass-ui-active .info-box,
+html.sv-glass-ui-active .section-box,
+html.sv-glass-ui-active .round-box,
+html.sv-glass-ui-active .portal-card,
+html.sv-glass-ui-active .dashboard-card,
+html.sv-glass-ui-active .summary-box,
+html.sv-glass-ui-active .grade-box {
+  background: var(--glass-card) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) !important;
+  box-shadow: var(--glass-shadow) !important;
+  color: var(--glass-text) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+html.sv-glass-ui-active .panel::before,
+html.sv-glass-ui-active .card::before,
+html.sv-glass-ui-active .modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  pointer-events: none;
+}
+
+html.sv-glass-ui-active .panel:hover,
+html.sv-glass-ui-active .card:hover,
+html.sv-glass-ui-active .list-group-item:hover,
+html.sv-glass-ui-active .portal-card:hover,
+html.sv-glass-ui-active .dashboard-card:hover {
+  background: var(--glass-card-hover) !important;
+  border-color: var(--glass-border-hover) !important;
+  box-shadow: var(--glass-shadow-lg) !important;
+  transform: translateY(-2px);
+}
+
+html.sv-glass-ui-active .panel-heading,
+html.sv-glass-ui-active .panel-footer,
+html.sv-glass-ui-active .card-header,
+html.sv-glass-ui-active .card-footer,
+html.sv-glass-ui-active .modal-header,
+html.sv-glass-ui-active .modal-footer,
+html.sv-glass-ui-active .portlet-header,
+html.sv-glass-ui-active .box-header {
+  background: rgba(255,255,255,0.02) !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) var(--glass-radius) 0 0 !important;
+  color: var(--glass-text) !important;
+  padding: 18px 22px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+}
+
+html.sv-glass-ui-active .panel-footer,
+html.sv-glass-ui-active .card-footer,
+html.sv-glass-ui-active .modal-footer,
+html.sv-glass-ui-active .box-footer {
+  border-bottom: none !important;
+  border-top: 1px solid var(--glass-border) !important;
+  border-radius: 0 0 var(--glass-radius) var(--glass-radius) !important;
+}
+
+html.sv-glass-ui-active .panel-body,
+html.sv-glass-ui-active .card-body,
+html.sv-glass-ui-active .modal-body,
+html.sv-glass-ui-active .box-body {
+  padding: 22px !important;
+}
+
+html.sv-glass-ui-active .btn {
+  font-family: var(--glass-font) !important;
+  border-radius: 14px !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  background: rgba(255,255,255,0.06) !important;
+  color: var(--glass-text) !important;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+html.sv-glass-ui-active .btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+  pointer-events: none;
+}
+
+html.sv-glass-ui-active .btn:hover::after {
+  transform: translateX(100%);
+}
+
+html.sv-glass-ui-active .btn:hover {
+  background: rgba(255,255,255,0.1) !important;
+  transform: scale(1.02);
+}
+
+html.sv-glass-ui-active .btn:active {
+  transform: scale(0.97);
+}
+
+html.sv-glass-ui-active .btn-primary {
+  background: linear-gradient(135deg, #5e5ce6, #007aff) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 24px rgba(94, 92, 230, 0.35) !important;
+}
+
+html.sv-glass-ui-active .btn-primary:hover {
+  box-shadow: 0 6px 32px rgba(94, 92, 230, 0.5) !important;
+  background: linear-gradient(135deg, #6b6af0, #0a84ff) !important;
+}
+
+html.sv-glass-ui-active .btn-success {
+  background: linear-gradient(135deg, #30d158, #28a745) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 24px rgba(48, 209, 88, 0.3) !important;
+}
+
+html.sv-glass-ui-active .btn-danger {
+  background: linear-gradient(135deg, #ff453a, #d6302a) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 24px rgba(255, 69, 58, 0.3) !important;
+}
+
+html.sv-glass-ui-active .btn-warning {
+  background: linear-gradient(135deg, #ff9f0a, #e68a00) !important;
+  color: #fff !important;
+}
+
+html.sv-glass-ui-active .btn-info {
+  background: linear-gradient(135deg, #64d2ff, #4db8e8) !important;
+  color: #fff !important;
+}
+
+html.sv-glass-ui-active table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100% !important;
+}
+
+html.sv-glass-ui-active table th {
+  background: rgba(255,255,255,0.02) !important;
+  color: var(--glass-text-secondary) !important;
+  font-weight: 600 !important;
+  padding: 14px 16px !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  font-size: 11px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+html.sv-glass-ui-active table td {
+  padding: 14px 16px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.03) !important;
+  color: var(--glass-text) !important;
+  background: transparent !important;
+  font-size: 14px !important;
+}
+
+html.sv-glass-ui-active table tr:last-child td {
+  border-bottom: none !important;
+}
+
+html.sv-glass-ui-active table tr:hover td {
+  background: rgba(255,255,255,0.03) !important;
+}
+
+html.sv-glass-ui-active .navbar,
+html.sv-glass-ui-active .nav-bar,
+html.sv-glass-ui-active .top-nav,
+html.sv-glass-ui-active .main-nav,
+html.sv-glass-ui-active .PXP-nav-container,
+html.sv-glass-ui-active .PXP2-nav {
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: var(--glass-blur-heavy) !important;
+  -webkit-backdrop-filter: var(--glass-blur-heavy) !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+}
+
+html.sv-glass-ui-active .navbar a, html.sv-glass-ui-active .nav-link, html.sv-glass-ui-active .nav-item a {
+  color: var(--glass-text) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+
+html.sv-glass-ui-active .navbar a:hover, html.sv-glass-ui-active .nav-link:hover, html.sv-glass-ui-active .nav-item a:hover {
+  color: var(--glass-accent) !important;
+}
+
+html.sv-glass-ui-active .dropdown-menu {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: var(--glass-blur-heavy) !important;
+  -webkit-backdrop-filter: var(--glass-blur-heavy) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius-sm) !important;
+  box-shadow: var(--glass-shadow-lg) !important;
+  padding: 6px !important;
+}
+
+html.sv-glass-ui-active .dropdown-menu li a,
+html.sv-glass-ui-active .dropdown-item {
+  color: var(--glass-text) !important;
+  border-radius: 10px !important;
+  padding: 10px 16px !important;
+  font-size: 14px !important;
+}
+
+html.sv-glass-ui-active .dropdown-menu li a:hover,
+html.sv-glass-ui-active .dropdown-item:hover {
+  background: rgba(255,255,255,0.06) !important;
+  color: var(--glass-accent) !important;
+}
+
+html.sv-glass-ui-active input[type="text"],
+html.sv-glass-ui-active input[type="password"],
+html.sv-glass-ui-active input[type="email"],
+html.sv-glass-ui-active input[type="search"],
+html.sv-glass-ui-active textarea,
+html.sv-glass-ui-active select,
+html.sv-glass-ui-active .form-control {
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 14px !important;
+  color: var(--glass-text) !important;
+  padding: 14px 18px !important;
+  font-family: var(--glass-font) !important;
+  font-size: 15px !important;
+  transition: all 0.3s ease !important;
+  backdrop-filter: var(--glass-blur-light) !important;
+  -webkit-backdrop-filter: var(--glass-blur-light) !important;
+}
+
+html.sv-glass-ui-active input:focus,
+html.sv-glass-ui-active textarea:focus,
+html.sv-glass-ui-active select:focus,
+html.sv-glass-ui-active .form-control:focus {
+  border-color: var(--glass-accent) !important;
+  box-shadow: 0 0 0 4px rgba(94, 92, 230, 0.12), var(--glass-shadow-glow) !important;
+  outline: none !important;
+  background: rgba(255,255,255,0.06) !important;
+}
+
+html.sv-glass-ui-active label {
+  color: var(--glass-text-secondary) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+html.sv-glass-ui-active header,
+html.sv-glass-ui-active .header,
+html.sv-glass-ui-active .page-header,
+html.sv-glass-ui-active .PXPHeaderLogo,
+html.sv-glass-ui-active .PXP-header {
+  background: transparent !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+}
+
+html.sv-glass-ui-active footer,
+html.sv-glass-ui-active .footer,
+html.sv-glass-ui-active .PXPFooter,
+html.sv-glass-ui-active #ctl00_PXPFooter {
+  background: transparent !important;
+  border-top: 1px solid var(--glass-border) !important;
+  color: var(--glass-text-secondary) !important;
+  padding: 20px !important;
+  font-size: 13px !important;
+}
+
+html.sv-glass-ui-active .PXPHeaderLogo {
+  text-align: center !important;
+  padding: 24px !important;
+}
+
+html.sv-glass-ui-active .PXPHeaderLogo img {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 70'%3E%3Crect width='240' height='70' fill='none'/%3E%3Ctext x='120' y='32' text-anchor='middle' font-family='Outfit,-apple-system,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' letter-spacing='4'%3EFEDERAL WAY%3C/text%3E%3Ctext x='120' y='52' text-anchor='middle' font-family='Outfit,-apple-system,sans-serif' font-size='11' font-weight='500' fill='rgba(255,255,255,0.5)' letter-spacing='6'%3EPUBLIC SCHOOLS%3C/text%3E%3C/svg%3E") !important;
+  width: 240px !important;
+  height: 70px !important;
+  border-radius: 14px !important;
+  display: inline-block !important;
+}
+
+html.sv-glass-ui-active .login-content {
+  max-width: 400px !important;
+  margin: 60px auto !important;
+}
+
+html.sv-glass-ui-active .login-content .panel {
+  border-radius: var(--glass-radius-lg) !important;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+}
+
+html.sv-glass-ui-active .login-content .panel-heading {
+  font-size: 24px !important;
+  text-align: center !important;
+  padding: 32px 20px 16px !important;
+  background: transparent !important;
+  font-weight: 700 !important;
+}
+
+html.sv-glass-ui-active #DistrictName {
+  display: block !important;
+  text-align: center !important;
+  color: var(--glass-text-secondary) !important;
+  font-size: 13px !important;
+  margin-bottom: 24px !important;
+}
+
+html.sv-glass-ui-active .pxp-forgot-password-link {
+  text-align: right !important;
+  margin-top: 8px !important;
+}
+
+html.sv-glass-ui-active .pxp-forgot-password-link a {
+  font-size: 13px !important;
+  color: var(--glass-text-secondary) !important;
+}
+
+html.sv-glass-ui-active .login-more {
+  border-top: 1px solid var(--glass-border) !important;
+  padding: 12px 20px !important;
+}
+
+html.sv-glass-ui-active .btn-more {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  cursor: pointer !important;
+  color: var(--glass-text-secondary) !important;
+  font-size: 14px !important;
+  padding: 8px !important;
+}
+
+html.sv-glass-ui-active .btn-more:hover {
+  color: var(--glass-text) !important;
+}
+
+html.sv-glass-ui-active .more-options ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 12px 0 0 !important;
+}
+
+html.sv-glass-ui-active .more-options ul li {
+  padding: 8px 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.03) !important;
+}
+
+html.sv-glass-ui-active .more-options ul li:last-child {
+  border-bottom: none !important;
+}
+
+html.sv-glass-ui-active .more-options .pxp-login-more-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: var(--glass-text) !important;
+  font-size: 14px !important;
+  padding: 6px 0 !important;
+}
+
+html.sv-glass-ui-active .more-options .pxp-login-more-link:hover {
+  color: var(--glass-accent) !important;
+}
+
+html.sv-glass-ui-active .equal .col-md-6 .panel {
+  border-radius: var(--glass-radius-lg) !important;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  animation: float-up 0.5s ease-out;
+}
+
+html.sv-glass-ui-active .equal .col-md-6 .panel:hover {
+  background: rgba(255,255,255,0.06) !important;
+  box-shadow: var(--glass-shadow-lg), 0 0 40px rgba(94, 92, 230, 0.1) !important;
+  transform: translateY(-4px);
+}
+
+html.sv-glass-ui-active .panel-body.center img {
+  opacity: 0.7;
+  filter: grayscale(0.2);
+}
+
+html.sv-glass-ui-active .largeText {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html.sv-glass-ui-active .grade,
+html.sv-glass-ui-active .score,
+html.sv-glass-ui-active .mark,
+html.sv-glass-ui-active .assignment-grade,
+html.sv-glass-ui-active .percent {
+  font-weight: 700 !important;
+}
+
+html.sv-glass-ui-active .grade.passing,
+html.sv-glass-ui-active .score.good {
+  color: var(--glass-success) !important;
+}
+
+html.sv-glass-ui-active .grade.warning,
+html.sv-glass-ui-active .score.average {
+  color: var(--glass-warning) !important;
+}
+
+html.sv-glass-ui-active .grade.failing,
+html.sv-glass-ui-active .score.bad {
+  color: var(--glass-danger) !important;
+}
+
+html.sv-glass-ui-active .progress {
+  background: rgba(255,255,255,0.04) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  height: 6px !important;
+}
+
+html.sv-glass-ui-active .progress-bar {
+  background: linear-gradient(90deg, #5e5ce6, #007aff, #64d2ff) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 0 16px rgba(94, 92, 230, 0.3);
+  background-size: 200% 100% !important;
+  animation: glass-shimmer 3s linear infinite;
+}
+
+html.sv-glass-ui-active .nav-tabs {
+  border-bottom: 1px solid var(--glass-border) !important;
+  gap: 0 !important;
+}
+
+html.sv-glass-ui-active .nav-tabs li a,
+html.sv-glass-ui-active .nav-tabs > li > a,
+html.sv-glass-ui-active .tab-link {
+  background: transparent !important;
+  border: none !important;
+  color: var(--glass-text-secondary) !important;
+  padding: 12px 20px !important;
+  font-weight: 500 !important;
+  border-radius: 0 !important;
+  position: relative;
+  font-size: 14px !important;
+}
+
+html.sv-glass-ui-active .nav-tabs li.active a,
+html.sv-glass-ui-active .nav-tabs > li.active > a,
+html.sv-glass-ui-active .nav-tabs > li.active > a:hover,
+html.sv-glass-ui-active .tab-link.active {
+  color: var(--glass-accent) !important;
+  background: transparent !important;
+}
+
+html.sv-glass-ui-active .nav-tabs li.active a::after,
+html.sv-glass-ui-active .tab-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 60%;
+  height: 3px;
+  background: var(--glass-accent);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 0 12px rgba(94, 92, 230, 0.4);
+}
+
+html.sv-glass-ui-active .alert,
+html.sv-glass-ui-active .message,
+html.sv-glass-ui-active .notification {
+  background: rgba(255,255,255,0.03) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius-sm) !important;
+  color: var(--glass-text) !important;
+}
+
+html.sv-glass-ui-active .alert-success {
+  border-left: 4px solid var(--glass-success) !important;
+}
+html.sv-glass-ui-active .alert-warning {
+  border-left: 4px solid var(--glass-warning) !important;
+}
+html.sv-glass-ui-active .alert-danger {
+  border-left: 4px solid var(--glass-danger) !important;
+}
+html.sv-glass-ui-active .alert-info {
+  border-left: 4px solid var(--glass-accent) !important;
+}
+
+html.sv-glass-ui-active .badge,
+html.sv-glass-ui-active .label {
+  background: rgba(255,255,255,0.06) !important;
+  color: var(--glass-text) !important;
+  border-radius: 20px !important;
+  padding: 4px 12px !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+}
+
+html.sv-glass-ui-active .badge-primary,
+html.sv-glass-ui-active .label-primary {
+  background: var(--glass-accent) !important;
+}
+
+html.sv-glass-ui-active .badge-success,
+html.sv-glass-ui-active .label-success {
+  background: var(--glass-success) !important;
+}
+
+html.sv-glass-ui-active .tooltip-inner {
+  background: rgba(0, 0, 0, 0.9) !important;
+  backdrop-filter: blur(60px) !important;
+  -webkit-backdrop-filter: blur(60px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--glass-text) !important;
+  box-shadow: var(--glass-shadow) !important;
+  font-size: 13px !important;
+}
+
+html.sv-glass-ui-active .modal-backdrop {
+  background: rgba(0,0,0,0.7) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+html.sv-glass-ui-active .modal-content {
+  border-radius: var(--glass-radius-lg) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow-lg) !important;
+}
+
+html.sv-glass-ui-active .pagination li a,
+html.sv-glass-ui-active .pagination > li > a {
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid var(--glass-border) !important;
+  color: var(--glass-text) !important;
+  border-radius: 10px !important;
+  margin: 0 3px !important;
+  font-size: 14px !important;
+  padding: 8px 14px !important;
+}
+
+html.sv-glass-ui-active .pagination li.active a,
+html.sv-glass-ui-active .pagination > li.active > a {
+  background: var(--glass-accent) !important;
+  border-color: var(--glass-accent) !important;
+  color: #fff !important;
+}
+
+html.sv-glass-ui-active .pagination li a:hover {
+  background: rgba(255,255,255,0.06) !important;
+}
+
+html.sv-glass-ui-active .loading,
+html.sv-glass-ui-active .spinner,
+html.sv-glass-ui-active .ajax-loader {
+  color: var(--glass-accent) !important;
+}
+
+html.sv-glass-ui-active .fa,
+html.sv-glass-ui-active .fas,
+html.sv-glass-ui-active .far,
+html.sv-glass-ui-active .glyphicon {
+  color: var(--glass-text-secondary) !important;
+}
+
+html.sv-glass-ui-active a .fa, html.sv-glass-ui-active a .fas, html.sv-glass-ui-active a .far,
+html.sv-glass-ui-active button .fa, html.sv-glass-ui-active button .fas {
+  color: inherit !important;
+}
+
+html.sv-glass-ui-active .panel-primary {
+  border-color: var(--glass-accent) !important;
+}
+html.sv-glass-ui-active .panel-primary > .panel-heading {
+  background: linear-gradient(135deg, #5e5ce6, #007aff) !important;
+  color: #fff !important;
+}
+
+html.sv-glass-ui-active .list-group {
+  border-radius: var(--glass-radius) !important;
+  overflow: hidden;
+}
+
+html.sv-glass-ui-active .list-group-item {
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  font-size: 14px !important;
+}
+
+html.sv-glass-ui-active .list-group-item:first-child {
+  border-radius: var(--glass-radius) var(--glass-radius) 0 0 !important;
+}
+
+html.sv-glass-ui-active .list-group-item:last-child {
+  border-radius: 0 0 var(--glass-radius) var(--glass-radius) !important;
+  border-bottom: none !important;
+}
+
+html.sv-glass-ui-active #legal {
+  color: var(--glass-text-secondary) !important;
+  font-size: 12px !important;
+}
+
+html.sv-glass-ui-active #SystemLinks ul {
+  list-style: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  gap: 24px !important;
+  justify-content: center !important;
+}
+
+html.sv-glass-ui-active #SystemLinks li {
+  display: inline !important;
+}
+
+html.sv-glass-ui-active .languagesDropDown {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 12px !important;
+}
+
+html.sv-glass-ui-active .PXP2-nav,
+html.sv-glass-ui-active .PXP2-tab-bar {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: var(--glass-blur-heavy) !important;
+  -webkit-backdrop-filter: var(--glass-blur-heavy) !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  padding: 0 16px !important;
+  border-radius: 0 !important;
+}
+
+html.sv-glass-ui-active .PXP2-nav a,
+html.sv-glass-ui-active .PXP2-tab {
+  color: var(--glass-text-secondary) !important;
+  padding: 14px 20px !important;
+  display: inline-block !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  border-bottom: 2px solid transparent !important;
+  font-size: 14px !important;
+}
+
+html.sv-glass-ui-active .PXP2-nav a:hover,
+html.sv-glass-ui-active .PXP2-tab:hover {
+  color: var(--glass-text) !important;
+  border-bottom-color: var(--glass-border) !important;
+}
+
+html.sv-glass-ui-active .PXP2-nav a.active,
+html.sv-glass-ui-active .PXP2-tab.active {
+  color: var(--glass-accent) !important;
+  border-bottom-color: var(--glass-accent) !important;
+}
+
+html.sv-glass-ui-active .PXP2-content,
+html.sv-glass-ui-active .PXP2-main {
+  padding: 24px !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+html.sv-glass-ui-active .PXP2-dashboard {
+  display: grid !important;
+  gap: 20px !important;
+}
+
+html.sv-glass-ui-active .PXP2-card {
+  background: var(--glass-card) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) !important;
+  box-shadow: var(--glass-shadow) !important;
+  padding: 20px !important;
+}
+
+html.sv-glass-ui-active .PXP2-card:hover {
+  background: var(--glass-card-hover) !important;
+  border-color: var(--glass-border-hover) !important;
+  box-shadow: var(--glass-shadow-lg) !important;
+}
+
+html.sv-glass-ui-active .student-info,
+html.sv-glass-ui-active .student-header,
+html.sv-glass-ui-active .profile-header {
+  background: var(--glass-card-strong) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) !important;
+  box-shadow: var(--glass-shadow) !important;
+  padding: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+}
+
+html.sv-glass-ui-active .student-photo,
+html.sv-glass-ui-active .student-avatar {
+  border-radius: 50% !important;
+  border: 2px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 40px rgba(94, 92, 230, 0.1) !important;
+}
+
+html.sv-glass-ui-active .grade-table,
+html.sv-glass-ui-active .assignment-table {
+  border-radius: var(--glass-radius) !important;
+  overflow: hidden;
+  background: var(--glass-card) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+}
+
+html.sv-glass-ui-active .grade-table table,
+html.sv-glass-ui-active .assignment-table table {
+  margin-bottom: 0 !important;
+}
+
+html.sv-glass-ui-active .grade-letter {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+}
+
+html.sv-glass-ui-active .attendance-box,
+html.sv-glass-ui-active .attendance-summary {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
+  gap: 12px !important;
+}
+
+html.sv-glass-ui-active .attendance-item {
+  background: var(--glass-card) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) !important;
+  padding: 16px !important;
+  text-align: center !important;
+}
+
+html.sv-glass-ui-active .attendance-item:hover {
+  background: var(--glass-card-hover) !important;
+  transform: translateY(-2px);
+}
+
+html.sv-glass-ui-active .attendance-count {
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  display: block !important;
+}
+
+html.sv-glass-ui-active .course-item,
+html.sv-glass-ui-active .class-item {
+  background: var(--glass-card) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) !important;
+  padding: 16px 20px !important;
+  margin-bottom: 10px !important;
+}
+
+html.sv-glass-ui-active .course-item:hover,
+html.sv-glass-ui-active .class-item:hover {
+  background: var(--glass-card-hover) !important;
+  border-color: var(--glass-border-hover) !important;
+  transform: translateX(4px);
+}
+
+html.sv-glass-ui-active .course-name,
+html.sv-glass-ui-active .class-name {
+  font-weight: 600 !important;
+  font-size: 16px !important;
+}
+
+html.sv-glass-ui-active .course-teacher,
+html.sv-glass-ui-active .class-teacher {
+  color: var(--glass-text-secondary) !important;
+  font-size: 14px !important;
+}
+
+html.sv-glass-ui-active .document-item,
+html.sv-glass-ui-active .attachment-item {
+  background: var(--glass-card) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius-sm) !important;
+  padding: 12px 16px !important;
+  margin-bottom: 8px !important;
+}
+
+html.sv-glass-ui-active .document-item:hover {
+  background: var(--glass-card-hover) !important;
+}
+
+html.sv-glass-ui-active .search-bar,
+html.sv-glass-ui-active .filter-bar {
+  background: var(--glass-card) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) !important;
+  padding: 16px 20px !important;
+  margin-bottom: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+html.sv-glass-ui-active input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px !important;
+  height: 28px !important;
+  border-radius: 14px !important;
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid var(--glass-border) !important;
+  cursor: pointer !important;
+  position: relative !important;
+  transition: all 0.3s ease !important;
+}
+
+html.sv-glass-ui-active input[type="checkbox"]:checked {
+  background: var(--glass-accent) !important;
+  border-color: var(--glass-accent) !important;
+}
+
+html.sv-glass-ui-active input[type="checkbox"]::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html.sv-glass-ui-active input[type="checkbox"]:checked::after {
+  transform: translateX(16px);
+}
+
+html.sv-glass-ui-active div:not([class*="sv-glass"]):not([class*="PXPHeader"]):not([class*="panel"]):not([class*="modal"]):not([class*="alert"]):not([class*="nav"]):not([class*="dropdown"]),
+html.sv-glass-ui-active section,
+html.sv-glass-ui-active article,
+html.sv-glass-ui-active aside,
+html.sv-glass-ui-active main {
+  background: transparent !important;
+}
+
+html.sv-glass-ui-active [style*="background:white"],
+html.sv-glass-ui-active [style*="background: white"],
+html.sv-glass-ui-active [style*="background:#fff"],
+html.sv-glass-ui-active [style*="background: #fff"],
+html.sv-glass-ui-active [style*="background-color:white"],
+html.sv-glass-ui-active [style*="background-color: white"],
+html.sv-glass-ui-active [style*="background-color:#fff"],
+html.sv-glass-ui-active [style*="background-color: #fff"],
+html.sv-glass-ui-active [style*="background:rgb(255,255,255"],
+html.sv-glass-ui-active [style*="background: rgb(255,255,255"],
+html.sv-glass-ui-active [style*="background:rgb(255, 255, 255"],
+html.sv-glass-ui-active [style*="background: rgb(255, 255, 255"] {
+  background: rgba(255,255,255,0.04) !important;
+}
+
+html.sv-glass-ui-active #PXP2-MainPanel,
+html.sv-glass-ui-active #PXP2-MainContent,
+html.sv-glass-ui-active #PXP2-Content,
+html.sv-glass-ui-active #PXP2-ContentPanel,
+html.sv-glass-ui-active #PXP2Dashboard,
+html.sv-glass-ui-active #mainPanel,
+html.sv-glass-ui-active #contentPanel,
+html.sv-glass-ui-active #mainContent {
+  background: transparent !important;
+}
+
+html.sv-glass-ui-active .PXP2-workspace,
+html.sv-glass-ui-active .PXP2-workspace-content,
+html.sv-glass-ui-active .PXP2-panel,
+html.sv-glass-ui-active .PXP2-content-panel,
+html.sv-glass-ui-active .PXP2-main-panel,
+html.sv-glass-ui-active .PXP2-dashboard-panel,
+html.sv-glass-ui-active .PXP2-grade-panel,
+html.sv-glass-ui-active .workspace,
+html.sv-glass-ui-active .workspace-content,
+html.sv-glass-ui-active .content-area,
+html.sv-glass-ui-active .main-area,
+html.sv-glass-ui-active .page-content,
+html.sv-glass-ui-active .page-area {
+  background: transparent !important;
+}
+
+html.sv-glass-ui-active .student-name-header,
+html.sv-glass-ui-active .student-name,
+html.sv-glass-ui-active .name-header,
+html.sv-glass-ui-active .student-name-panel,
+html.sv-glass-ui-active .header-name,
+html.sv-glass-ui-active .user-info,
+html.sv-glass-ui-active .user-name,
+html.sv-glass-ui-active .profile-info,
+html.sv-glass-ui-active .student-profile {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+html.sv-glass-ui-active .PXP2-student-header,
+html.sv-glass-ui-active .PXP2-student-info,
+html.sv-glass-ui-active .PXP2-user-info,
+html.sv-glass-ui-active .PXP2-profile {
+  background: rgba(255,255,255,0.04) !important;
+  backdrop-filter: blur(60px) !important;
+  -webkit-backdrop-filter: blur(60px) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 22px !important;
+  padding: 16px 24px !important;
+  color: #fff !important;
+}
+
+html.sv-glass-ui-active [class*="recent"],
+html.sv-glass-ui-active [class*="Recent"],
+html.sv-glass-ui-active [class*="history"],
+html.sv-glass-ui-active [class*="History"],
+html.sv-glass-ui-active [id*="Recent"],
+html.sv-glass-ui-active [id*="recent"],
+html.sv-glass-ui-active [id*="History"],
+html.sv-glass-ui-active [id*="history"],
+html.sv-glass-ui-active [class*="project"],
+html.sv-glass-ui-active [class*="Project"],
+html.sv-glass-ui-active [class*="assignment"],
+html.sv-glass-ui-active [class*="Assignment"],
+html.sv-glass-ui-active [class*="task"],
+html.sv-glass-ui-active [class*="homework"],
+html.sv-glass-ui-active [class*="activity"],
+html.sv-glass-ui-active [id*="Project"],
+html.sv-glass-ui-active [id*="project"],
+html.sv-glass-ui-active [id*="Assignment"],
+html.sv-glass-ui-active [id*="assignment"] {
+  background: rgba(255,255,255,0.04) !important;
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: var(--glass-radius) !important;
+  color: var(--glass-text) !important;
+}
+
+html.sv-glass-ui-active .PXP2-right-panel,
+html.sv-glass-ui-active .right-panel,
+html.sv-glass-ui-active .right-side,
+html.sv-glass-ui-active .right-column,
+html.sv-glass-ui-active [class*="rightPanel"],
+html.sv-glass-ui-active [class*="right-panel"],
+html.sv-glass-ui-active [class*="rightSide"],
+html.sv-glass-ui-active [class*="right-column"],
+html.sv-glass-ui-active #rightPanel,
+html.sv-glass-ui-active #right-panel {
+  background: transparent !important;
+}
+
+html.sv-glass-ui-active .PXP2-right-panel > *,
+html.sv-glass-ui-active .right-panel > *,
+html.sv-glass-ui-active .right-side > *,
+html.sv-glass-ui-active .right-column > * {
+  background: rgba(255,255,255,0.04) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) !important;
+}
+
+html.sv-glass-ui-active .PXP2-content-panel,
+html.sv-glass-ui-active .PXP2-content-area,
+html.sv-glass-ui-active .PXP2-main-area,
+html.sv-glass-ui-active .PXP2-page,
+html.sv-glass-ui-active .PXP2-page-body,
+html.sv-glass-ui-active .PXP2-body,
+html.sv-glass-ui-active .PXP2-wrapper,
+html.sv-glass-ui-active .PXP2-container,
+html.sv-glass-ui-active .PXP2-inner,
+html.sv-glass-ui-active .PXP2-section {
+  background: transparent !important;
+}
+
+@media (max-width: 768px) {
+  html.sv-glass-ui-active .panel,
+  html.sv-glass-ui-active .panel-default,
+  html.sv-glass-ui-active .card {
+    border-radius: 18px !important;
+  }
+  html.sv-glass-ui-active .panel-body,
+  html.sv-glass-ui-active .card-body {
+    padding: 16px !important;
+  }
+}

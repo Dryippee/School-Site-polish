@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Glass UI — StudentVue, Canvas, iReady & more",
+  "version": "1.0.0",
+  "description": "Futuristic glassmorphism dark theme for StudentVue, Canvas, iReady, Lexia, and Mathia. Drop your own background image into the backgrounds folder.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://grades.fwps.org/*",
+        "https://*.studentvue.com/*",
+        "https://*.parentvue.com/*",
+        "https://*.instructure.com/*",
+        "https://*.i-ready.com/*",
+        "https://*.lexialearning.com/*",
+        "https://*.lexia.com/*",
+        "https://*.carnegielearning.com/*",
+        "https://*.mathia.com/*"
+      ],
+      "css": ["styles.css"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [],
+  "web_accessible_resources": [{
+    "resources": ["bg.png", "backgrounds/*", "pfp.png", "pfp-white.png", "icons/*"],
+    "matches": ["<all_urls>"]
+  }],
+  "host_permissions": [
+    "https://grades.fwps.org/*",
+    "https://*.studentvue.com/*",
+    "https://*.parentvue.com/*",
+    "https://*.instructure.com/*",
+    "https://*.i-ready.com/*",
+    "https://*.lexialearning.com/*",
+    "https://*.lexia.com/*",
+    "https://*.carnegielearning.com/*",
+    "https://*.mathia.com/*"
+  ]
+}
