@@ -1184,6 +1184,132 @@ html.sv-glass-ui-active .PXP2-section {
   background: transparent !important;
 }
 
+html.sv-glass-ui-active .ic-app,
+html.sv-glass-ui-active .ic-Layout-wrapper,
+html.sv-glass-ui-active .ic-Layout-columns,
+html.sv-glass-ui-active .ic-Layout-contentMain,
+html.sv-glass-ui-active .ic-Dashboard-header,
+html.sv-glass-ui-active .ic-DashboardCard,
+html.sv-glass-ui-active .ic-DashboardCard__header,
+html.sv-glass-ui-active .ic-DashboardCard__body,
+html.sv-glass-ui-active .ic-DashboardCard__actions,
+html.sv-glass-ui-active .ic-assignment,
+html.sv-glass-ui-active .ic-assignment-row,
+html.sv-glass-ui-active .ic-assignment-list,
+html.sv-glass-ui-active .ic-Table,
+html.sv-glass-ui-active .ic-Table th,
+html.sv-glass-ui-active .ic-Table td,
+html.sv-glass-ui-active .ic-Action-header,
+html.sv-glass-ui-active .ic-app-nav,
+html.sv-glass-ui-active .ic-app-main,
+html.sv-glass-ui-active .ic-app-header,
+html.sv-glass-ui-active .ic-app-header__layout,
+html.sv-glass-ui-active .ic-DashboardCard__container,
+html.sv-glass-ui-active .ic-DashboardCard__box,
+html.sv-glass-ui-active .ic-DashboardCard__content {
+  background: transparent !important;
+}
+
+html.sv-glass-ui-active .ic-assignment-row,
+html.sv-glass-ui-active .ic-assignment-list .item-group,
+html.sv-glass-ui-active .ig-row,
+html.sv-glass-ui-active .ig-header,
+html.sv-glass-ui-active .ig-details,
+html.sv-glass-ui-active .ig-info,
+html.sv-glass-ui-active .ig-title,
+html.sv-glass-ui-active .ig-admin,
+html.sv-glass-ui-active .assignment-group,
+html.sv-glass-ui-active .assignment-group-title,
+html.sv-glass-ui-active .assignment-group-content,
+html.sv-glass-ui-active .assignment-row,
+html.sv-glass-ui-active .assignment-details,
+html.sv-glass-ui-active .assignment-info,
+html.sv-glass-ui-active .assignment-title,
+html.sv-glass-ui-active .context_module_item,
+html.sv-glass-ui-active .context_module_item .module-item,
+html.sv-glass-ui-active .content-module,
+html.sv-glass-ui-active .module-sequence-footer,
+html.sv-glass-ui-active .module-sequence-footer-content,
+html.sv-glass-ui-active .item-group-container,
+html.sv-glass-ui-active .group_list,
+html.sv-glass-ui-active .group_top,
+html.sv-glass-ui-active .group_body,
+html.sv-glass-ui-active .group_element,
+html.sv-glass-ui-active .group_header {
+  background: rgba(255,255,255,0.04) !important;
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: var(--glass-radius-sm, 20px) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+html.sv-glass-ui-active .module-item,
+html.sv-glass-ui-active .context_module_item,
+html.sv-glass-ui-active .ig-row,
+html.sv-glass-ui-active .ig-row .ig-row,
+html.sv-glass-ui-active .assignment-row,
+html.sv-glass-ui-active .group_element,
+html.sv-glass-ui-active li.assignment,
+html.sv-glass-ui-active div.assignment,
+html.sv-glass-ui-active .item-group-condensed,
+html.sv-glass-ui-active .item-group-condensed .ig-row,
+html.sv-glass-ui-active .item-group-condensed .ig-header,
+html.sv-glass-ui-active .item-group-condensed .ig-details,
+html.sv-glass-ui-active .item-group-condensed .ig-info,
+html.sv-glass-ui-active .item-group-condensed .ig-title,
+html.sv-glass-ui-active .item-group-condensed .ig-admin,
+html.sv-glass-ui-active .item_group,
+html.sv-glass-ui-active .item_group .ig-row,
+html.sv-glass-ui-active .item_group .ig-header,
+html.sv-glass-ui-active .item_group .ig-details,
+html.sv-glass-ui-active .item_group .ig-info,
+html.sv-glass-ui-active .item_group .ig-title,
+html.sv-glass-ui-active .item_group .ig-admin {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin-bottom: 8px !important;
+}
+
+html.sv-glass-ui-active .ig-row:hover,
+html.sv-glass-ui-active .assignment-row:hover,
+html.sv-glass-ui-active .context_module_item:hover,
+html.sv-glass-ui-active .group_element:hover {
+  background: rgba(255,255,255,0.08) !important;
+  transform: translateX(4px);
+}
+
+html.sv-glass-ui-active .ig-header,
+html.sv-glass-ui-active .assignment-group-title,
+html.sv-glass-ui-active .group_header {
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+}
+
+html.sv-glass-ui-active .item-group-container,
+html.sv-glass-ui-active .assignment-group,
+html.sv-glass-ui-active .context_module_item .module-item-title,
+html.sv-glass-ui-active .context_module_item .module-item-name,
+html.sv-glass-ui-active .context_module_item .module-item-content,
+html.sv-glass-ui-active .context_module_item .item_group,
+html.sv-glass-ui-active .context_module_item .item_group .ig-row,
+html.sv-glass-ui-active .context_module_item .item_group .ig-header,
+html.sv-glass-ui-active .context_module_item .item_group .ig-details,
+html.sv-glass-ui-active .context_module_item .item_group .ig-info,
+html.sv-glass-ui-active .context_module_item .item_group .ig-title,
+html.sv-glass-ui-active .context_module_item .item_group .ig-admin {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+html.sv-glass-ui-active .ig-row a,
+html.sv-glass-ui-active .assignment-row a {
+  color: var(--glass-accent, #5e5ce6) !important;
+}
+
 @media (max-width: 768px) {
   html.sv-glass-ui-active .panel,
   html.sv-glass-ui-active .panel-default,

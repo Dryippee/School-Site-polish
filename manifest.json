@@ -29,7 +29,7 @@
   ],
   "permissions": [],
   "web_accessible_resources": [{
-    "resources": ["bg.png", "backgrounds/*", "pfp.png", "pfp-white.png", "icons/*"],
+    "resources": ["bg.png", "backgrounds/*", "profiles/*", "pfp.png", "pfp-white.png", "icons/*"],
     "matches": ["<all_urls>"]
   }],
   "host_permissions": [
