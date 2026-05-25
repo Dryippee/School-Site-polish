@@ -1,7 +1,14 @@
 (() => {
   const themeClass = 'sv-glass-ui-active';
   const homePxpClass = 'sv-home-pxp2';
+  const gradebookLiteClass = 'sv-gradebook-lite';
   document.documentElement.classList.add(themeClass);
+
+  const isGradebook = window.location.pathname.endsWith('/PXP2_Gradebook.aspx') ||
+    window.location.pathname.endsWith('PXP2_Gradebook.aspx');
+  if (isGradebook) {
+    document.documentElement.classList.add(gradebookLiteClass);
+  }
 
   if (window.location.pathname.endsWith('/Home_PXP2.aspx') ||
       window.location.pathname.endsWith('Home_PXP2.aspx')) {
@@ -53,15 +60,6 @@
     if (root.querySelectorAll) nodes.push(...root.querySelectorAll('*'));
     nodes.forEach(el => {
       if (el.classList && el.classList.contains('sv-pxp-fixed')) return;
-      const style = getComputedStyle(el);
-      const bg = style.backgroundColor;
-      if (bg === 'rgb(255, 255, 255)' || bg === 'white' || bg === '#ffffff' || bg === '#fff' ||
-          bg === 'rgb(255,255,255)' || style.background === 'white' || style.background === '#fff') {
-        el.style.setProperty('background', 'rgba(255,255,255,0.04)', 'important');
-        el.style.setProperty('backdrop-filter', 'blur(40px)', 'important');
-        el.classList.add('sv-pxp-fixed');
-      }
-
       if (el.tagName === 'IMG' && !el.dataset.svPfp) {
         const alt = (el.alt || '').toLowerCase();
         const src = (el.src || '').toLowerCase();
@@ -106,10 +104,12 @@
     document.head ? document.head.appendChild(deepStyle) : document.documentElement.appendChild(deepStyle);
   }
 
-  applyGlobals();
+  if (!isGradebook) {
+    applyGlobals();
 
-  setTimeout(() => fixWhiteElements(document), 500);
-  setTimeout(() => fixWhiteElements(document), 1500);
+    setTimeout(() => fixWhiteElements(document), 500);
+    setTimeout(() => fixWhiteElements(document), 1500);
+  }
 
   const queued = new Set();
   let pending = false;
@@ -148,14 +148,16 @@
     });
   }
 
-  if (document.body) startObserver();
-  else {
-    const waitObs = new MutationObserver(() => {
-      if (document.body) {
-        waitObs.disconnect();
-        startObserver();
-      }
-    });
-    waitObs.observe(document.documentElement, { childList: true, subtree: true });
+  if (!isGradebook) {
+    if (document.body) startObserver();
+    else {
+      const waitObs = new MutationObserver(() => {
+        if (document.body) {
+          waitObs.disconnect();
+          startObserver();
+        }
+      });
+      waitObs.observe(document.documentElement, { childList: true, subtree: true });
+    }
   }
 })();

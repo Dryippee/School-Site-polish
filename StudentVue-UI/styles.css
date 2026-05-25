@@ -79,6 +79,53 @@ html.sv-glass-ui-active::before {
   animation: ambient-pulse 8s ease-in-out infinite;
 }
 
+html.sv-glass-ui-active.sv-gradebook-lite .panel,
+html.sv-glass-ui-active.sv-gradebook-lite .panel-default,
+html.sv-glass-ui-active.sv-gradebook-lite .well,
+html.sv-glass-ui-active.sv-gradebook-lite .card,
+html.sv-glass-ui-active.sv-gradebook-lite .list-group-item,
+html.sv-glass-ui-active.sv-gradebook-lite .dropdown-menu,
+html.sv-glass-ui-active.sv-gradebook-lite .modal-content,
+html.sv-glass-ui-active.sv-gradebook-lite .PXP-nav__dropdown,
+html.sv-glass-ui-active.sv-gradebook-lite .content-box,
+html.sv-glass-ui-active.sv-gradebook-lite .data-box,
+html.sv-glass-ui-active.sv-gradebook-lite .info-box,
+html.sv-glass-ui-active.sv-gradebook-lite .section-box,
+html.sv-glass-ui-active.sv-gradebook-lite .round-box,
+html.sv-glass-ui-active.sv-gradebook-lite .portal-card,
+html.sv-glass-ui-active.sv-gradebook-lite .dashboard-card,
+html.sv-glass-ui-active.sv-gradebook-lite .summary-box,
+html.sv-glass-ui-active.sv-gradebook-lite .grade-box,
+html.sv-glass-ui-active.sv-gradebook-lite .PXP2-card,
+html.sv-glass-ui-active.sv-gradebook-lite .student-info,
+html.sv-glass-ui-active.sv-gradebook-lite .student-header,
+html.sv-glass-ui-active.sv-gradebook-lite .attendance-item,
+html.sv-glass-ui-active.sv-gradebook-lite .course-item,
+html.sv-glass-ui-active.sv-gradebook-lite .class-item,
+html.sv-glass-ui-active.sv-gradebook-lite .grade-table,
+html.sv-glass-ui-active.sv-gradebook-lite .assignment-table,
+html.sv-glass-ui-active.sv-gradebook-lite .alert,
+html.sv-glass-ui-active.sv-gradebook-lite .message,
+html.sv-glass-ui-active.sv-gradebook-lite .btn,
+html.sv-glass-ui-active.sv-gradebook-lite .panel-heading,
+html.sv-glass-ui-active.sv-gradebook-lite .panel-footer,
+html.sv-glass-ui-active.sv-gradebook-lite .card-header,
+html.sv-glass-ui-active.sv-gradebook-lite .card-footer,
+html.sv-glass-ui-active.sv-gradebook-lite .modal-header,
+html.sv-glass-ui-active.sv-gradebook-lite .modal-footer,
+html.sv-glass-ui-active.sv-gradebook-lite .PXP2-student-header,
+html.sv-glass-ui-active.sv-gradebook-lite [class*="recent"],
+html.sv-glass-ui-active.sv-gradebook-lite [class*="history"],
+html.sv-glass-ui-active.sv-gradebook-lite [class*="project"],
+html.sv-glass-ui-active.sv-gradebook-lite [class*="assignment"],
+html.sv-glass-ui-active.sv-gradebook-lite [class*="task"],
+html.sv-glass-ui-active.sv-gradebook-lite [class*="activity"] {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
 html.sv-glass-ui-active body {
   font-family: var(--glass-font) !important;
   color: var(--glass-text) !important;
@@ -126,6 +173,11 @@ html.sv-glass-ui-active .container,
 html.sv-glass-ui-active .container-fluid,
 html.sv-glass-ui-active .row,
 html.sv-glass-ui-active [class*="col-"] {
+  background: transparent !important;
+}
+
+html.sv-glass-ui-active.sv-gradebook-lite div,
+html.sv-glass-ui-active.sv-gradebook-lite span {
   background: transparent !important;
 }
 
