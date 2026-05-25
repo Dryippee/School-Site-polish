@@ -1,6 +1,12 @@
 (() => {
   const themeClass = 'sv-glass-ui-active';
+  const homePxpClass = 'sv-home-pxp2';
   document.documentElement.classList.add(themeClass);
+
+  if (window.location.pathname.endsWith('/Home_PXP2.aspx') ||
+      window.location.pathname.endsWith('Home_PXP2.aspx')) {
+    document.documentElement.classList.add(homePxpClass);
+  }
 
   const head = document.head || document.documentElement;
   const pfpUrl = chrome.runtime.getURL('personalization/pfp-white.png');

@@ -528,6 +528,18 @@ html.sv-glass-ui-active #DistrictName {
   margin-bottom: 24px !important;
 }
 
+html.sv-glass-ui-active .greeting-container {
+  display: none !important;
+}
+
+html.sv-glass-ui-active .pxp-navbar-container {
+  display: none !important;
+}
+
+html.sv-glass-ui-active .pxp-student-header {
+  display: none !important;
+}
+
 html.sv-glass-ui-active .pxp-forgot-password-link {
   text-align: right !important;
   margin-top: 8px !important;
@@ -813,6 +825,22 @@ html.sv-glass-ui-active .panel-primary > .panel-heading {
 html.sv-glass-ui-active .list-group {
   border-radius: var(--glass-radius) !important;
   overflow: hidden;
+}
+
+html.sv-glass-ui-active.sv-home-pxp2 .pxp-left-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  height: 100% !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: none !important;
+}
+
+html.sv-glass-ui-active.sv-home-pxp2 .pxp-left-nav .list-group-item {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
 }
 
 html.sv-glass-ui-active .list-group-item {
