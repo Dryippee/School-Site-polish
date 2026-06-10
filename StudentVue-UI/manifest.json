@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "StudentVue Glass UI",
+  "version": "1.0.0",
+  "description": "Transform StudentVue into a modern glassmorphism-inspired UI with a dark theme.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://grades.fwps.org/*",
+        "https://*.studentvue.com/*",
+        "https://*.parentvue.com/*"
+      ],
+      "css": ["styles.css"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [],
+  "web_accessible_resources": [{
+    "resources": ["personalization/bg.png", "personalization/pfp.png", "personalization/pfp-white.png", "icons/*"],
+    "matches": ["https://grades.fwps.org/*", "https://*.studentvue.com/*", "https://*.parentvue.com/*"]
+  }],
+  "host_permissions": [
+    "https://grades.fwps.org/*",
+    "https://*.studentvue.com/*",
+    "https://*.parentvue.com/*"
+  ]
+}
