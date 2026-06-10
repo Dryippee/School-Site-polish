@@ -1,80 +1,41 @@
 (() => {
-  const themeClass = 'sv-glass-ui-active';
-  document.documentElement.classList.add(themeClass);
+  const TC = 'sv-glass-ui-active';
+  document.documentElement.classList.add(TC);
 
-  const fontLink = document.createElement('link');
-  fontLink.rel = 'stylesheet';
-  fontLink.href = 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap';
-  (document.head || document.documentElement).appendChild(fontLink);
+  const $ = (tag, o) => Object.assign(document.createElement(tag), o);
+  const head = () => document.head || document.documentElement;
+  const url = p => { try { return chrome.runtime.getURL(p); } catch { return p; } };
 
-  function url(p) { try { return chrome.runtime.getURL(p); } catch { return p; } }
+  head().append($('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap' }));
 
-  async function loadOnce(name, customPath, defaultPath, cssFn) {
-    try {
-      let u = url(defaultPath);
-      try { const r = await fetch(url(customPath), { method: 'HEAD' }); if (r.ok) u = url(customPath); } catch {}
-      const s = document.createElement('style');
-      s.textContent = cssFn(u);
-      (document.head || document.documentElement).appendChild(s);
-      return u;
-    } catch { return url(defaultPath); }
-  }
+  const bg = url('backgrounds/abstract-fantasy-landscape-with-color-year-purple-tones.jpg');
+  head().append($('style', { textContent: `html.${TC} body{background:url("${bg}")center/cover fixed!important}` }));
 
-  const bgUrlPromise = loadOnce('bg', 'backgrounds/bg.png', 'backgrounds/default.png',
-    u => `.${themeClass} body { background: url("${u}") center / cover fixed !important; }`);
+  const pfp = url('profiles/pfp.png');
+  head().append($('style', {
+    textContent:
+      `.${TC} *{background:transparent!important}` +
+      `.${TC} [class*="student"] img,.${TC} [class*="avatar"] img,` +
+      `.${TC} img[alt*="student"],.${TC} img[alt*="avatar"],.${TC} img[alt*="profile"],.${TC} img[alt*="photo"]{` +
+      `content:url("${pfp}")!important;width:40px!important;height:40px!important;border-radius:50%!important;object-fit:cover!important}` +
+      `.${TC} .student-photo,.${TC} .student-avatar,.${TC} [class*="studentPhoto"],.${TC} [class*="student-photo"],` +
+      `.${TC} [class*="profilePhoto"],.${TC} [class*="profile-photo"],.${TC} [class*="userPhoto"],` +
+      `.${TC} [class*="user-photo"],.${TC} [class*="headshot"],.${TC} [class*="portrait"],` +
+      `.${TC} img[alt*="user"],.${TC} img[alt*="portrait"],.${TC} img[src*="student"],.${TC} img[src*="avatar"],` +
+      `.${TC} img[src*="profile"],.${TC} img[src*="photo"]{` +
+      `content:url("${url('profiles/default.png')}")!important;width:40px!important;height:40px!important;border-radius:50%!important;object-fit:cover!important}`
+  }));
 
-  const pfpUrlPromise = loadOnce('pfp', 'profiles/pfp.png', 'profiles/default.png',
-    u => `.${themeClass} .student-photo, .${themeClass} .student-avatar, ` +
-         `.${themeClass} [class*="studentPhoto"], .${themeClass} [class*="student-photo"], ` +
-         `.${themeClass} [class*="avatar"], .${themeClass} [class*="profilePhoto"], ` +
-         `.${themeClass} [class*="profile-photo"], .${themeClass} [class*="userPhoto"], ` +
-         `.${themeClass} [class*="user-photo"], .${themeClass} [class*="headshot"], ` +
-         `.${themeClass} [class*="portrait"], .${themeClass} img[alt*="student"], ` +
-         `.${themeClass} img[alt*="avatar"], .${themeClass} img[alt*="profile"], ` +
-         `.${themeClass} img[alt*="photo"], .${themeClass} img[alt*="user"], ` +
-         `.${themeClass} img[alt*="portrait"], .${themeClass} img[src*="student"], ` +
-         `.${themeClass} img[src*="avatar"], .${themeClass} img[src*="profile"], ` +
-         `.${themeClass} img[src*="photo"] { ` +
-         `content: url("${u}") !important; width: 40px !important; height: 40px !important; ` +
-         `border-radius: 50% !important; object-fit: cover !important; }`);
+  const fixPfp = () => {
+    if (!document.body) return;
+    document.body.querySelectorAll('img:not([data-svp])').forEach(el => {
+      if (/student|avatar|profile|photo|user|portrait|headshot/.test((el.alt || '') + (el.src || ''))) {
+        el.dataset.svp = '1';
+        el.src = pfp;
+      }
+    });
+  };
 
-  pfpUrlPromise.then(pfpUrl => {
-    window.__svPfp = pfpUrl;
-    setTimeout(() => {
-      if (!document.body) return;
-      document.body.querySelectorAll('img').forEach(el => {
-        if (el.dataset.svPfp) return;
-        const a = (el.alt || '').toLowerCase();
-        const s = (el.src || '').toLowerCase();
-        if (/student|avatar|profile|photo|user|portrait|headshot/.test(a + s)) {
-          el.dataset.svPfp = '1';
-          el.src = pfpUrl;
-        }
-      });
-    }, 1000);
-  });
-
-  const glassReset = document.createElement('style');
-  glassReset.textContent =
-    `.${themeClass} .panel, .${themeClass} .panel-default, .${themeClass} .card, ` +
-    `.${themeClass} .modal-content, .${themeClass} .dropdown-menu, ` +
-    `.${themeClass} .list-group-item, .${themeClass} .well, ` +
-    `.${themeClass} .portal-card, .${themeClass} .dashboard-card, ` +
-    `.${themeClass} .summary-box, .${themeClass} .grade-box, ` +
-    `.${themeClass} .PXP2-card, .${themeClass} .student-info, ` +
-    `.${themeClass} .student-header, .${themeClass} .attendance-item, ` +
-    `.${themeClass} .course-item, .${themeClass} .class-item, ` +
-    `.${themeClass} .grade-table, .${themeClass} .assignment-table, ` +
-    `.${themeClass} .alert, .${themeClass} .btn, ` +
-    `.${themeClass} .panel-heading, .${themeClass} .panel-footer, ` +
-    `.${themeClass} .card-header, .${themeClass} .card-footer, ` +
-    `.${themeClass} .modal-header, .${themeClass} .modal-footer, ` +
-    `.${themeClass} .PXP2-student-header, ` +
-    `.${themeClass} [class*="recent"], .${themeClass} [class*="history"], ` +
-    `.${themeClass} [class*="project"], .${themeClass} [class*="assignment"], ` +
-    `.${themeClass} [class*="task"], .${themeClass} [class*="activity"] { ` +
-    `background: rgba(255,255,255,0.04) !important; ` +
-    `backdrop-filter: blur(40px) !important; ` +
-    `-webkit-backdrop-filter: blur(40px) !important; }`;
-  (document.head || document.documentElement).appendChild(glassReset);
+  if (document.body) { fixPfp(); new MutationObserver(fixPfp).observe(document.body, { childList: true, subtree: true }); }
+  else document.addEventListener('DOMContentLoaded', () => { fixPfp(); new MutationObserver(fixPfp).observe(document.body, { childList: true, subtree: true }); });
 })();
